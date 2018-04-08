@@ -2,6 +2,7 @@
 
 ## Конспект видео-уроков по созданию форума на фреймворке Laravel
 Канал автора на [Youtube](https://www.youtube.com/channel/UCjUvIf50gEtUqxwewsZTgTw)
+
 Урок на [Youtube](https://www.youtube.com/watch?v=UjtTHMODB00)
 
 ### Навигация по веткам:
