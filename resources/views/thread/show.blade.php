@@ -18,17 +18,22 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             @foreach($thread->replies as $reply)
-                <div class="panel panel-default">
-                    <div class="panel panel-heading">
-                        <a href="">{{$reply->owner->name}}</a>
-                        {{$reply->created_at->diffForHumans()}}
-                    </div>
-                    <div class="panel-body">
-                        <p>{{$reply->body}}</p>
-                    </div>
-                </div>
+                @include('thread.reply');
             @endforeach
         </div>
+    </div>
+    @if(auth()->check())
+    <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form method="POST" action="{{$thread->path() . '/replies'}}">
+            <div class="form-group">
+                {{csrf_field()}}
+                <textarea name="body" id="" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Post!</button>
+        </form>
+    @endif
+    </div>
     </div>
 </div>
 @endsection
