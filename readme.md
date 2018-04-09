@@ -8,6 +8,7 @@
 ### Навигация по веткам:
 * [Урок - 1](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%231)
 * [Урок - 2](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%232)
+* [Урок - 3](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%233)
 
 ### Команды из урока:
 * Создать 50 тем 
