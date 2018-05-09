@@ -10,6 +10,16 @@ class ParticipateinForumTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function test_unauthuser_may_participate_in_forum_thread()
+    {
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+        //получаем юзера
+        $thread = factory('App\Thread')->create();
+        //создаем ответ и записываем в БД
+        $reply = factory('App\Reply')->make();
+        $this->post($thread->path() . '/replies', $reply->toArray());
+    }
+
     public function test_user_may_participate_in_forum_thread()
     {
         //получаем юзера

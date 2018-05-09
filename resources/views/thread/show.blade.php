@@ -7,8 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <article>
-                        <h4>{{$thread->titlle}}</h4>
+                        <h4>{{$thread->title}}</h4>
                         <p>{{$thread->body}}</p>
+                        <h5>Author: {{$thread->creator->name}}</h5>
                         <hr>
                     </article>
                 </div>
@@ -25,7 +26,7 @@
     @if(auth()->check())
     <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <form method="POST" action="{{$thread->path() . '/replies'}}">
+        <form method="POST" action="{{ route('post.reply', $thread->id) }}">
             <div class="form-group">
                 {{csrf_field()}}
                 <textarea name="body" id="" class="form-control" cols="30" rows="10"></textarea>
