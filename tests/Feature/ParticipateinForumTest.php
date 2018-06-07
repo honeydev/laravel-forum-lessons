@@ -29,6 +29,8 @@ class ParticipateinForumTest extends TestCase
         $thread = factory('App\Thread')->create();
         //создаем ответ и записываем в БД
         $reply = factory('App\Reply')->make();
+
+        // dd($thread->path());
         $this->post($thread->path() . '/replies', $reply->toArray());
         //проверяем вывод
         $this->get($thread->path())

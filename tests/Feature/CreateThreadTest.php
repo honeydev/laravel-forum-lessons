@@ -14,12 +14,9 @@ class CreateThreadTest extends TestCase
     public function test_unauth_user_can_create_new_thread()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
-        $user = factory('App\User')->create();
-        $thread = factory('App\Thread')->create();
-        $reply = factory('App\Thread')->make();
-        $this->post('/threads', $reply->toArray());
-        $this->get($thread->path())
-            ->assertSee($thread->body);
+        $user = create('App\User');
+        $thread = make('App\Thread');
+        $this->post('/threads', $thread->toArray());
     }
 
     public function test_unauth_user_can_not_see_create_thread()
@@ -30,11 +27,11 @@ class CreateThreadTest extends TestCase
 
     public function test_user_can_create_new_thread()
     {
-        $user = factory('App\User')->create();
+        $user = create('App\User');
         $this->be($user);
-        $thread = factory('App\Thread')->create();
-        $reply = factory('App\Thread')->make();
-        $this->post('/threads', $reply->toArray());
+        $this->signIn();
+        $thread = create('App\Thread');
+        $this->post('/threads', $thread->toArray());
         $this->get($thread->path())
             ->assertSee($thread->body);
     }

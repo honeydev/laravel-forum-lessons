@@ -23,6 +23,11 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf('App\User', $thread->creator);
     }
 
+    public function test_a_thread_belongs_to_channel()
+    {
+        $this->assertInstanceOf('App\Channel', $this->thread->channel);
+    }
+
     public function test_a_thread_can_add_reply()
     {
         $this->thread->addReply([

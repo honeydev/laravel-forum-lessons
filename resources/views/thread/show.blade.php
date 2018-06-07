@@ -26,7 +26,7 @@
     @if(auth()->check())
     <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <form method="POST" action="{{ route('post.reply', $thread->id) }}">
+        <form method="POST" action="{{ route('post.reply', [$thread->channel->id, $thread->id]) }}">
             <div class="form-group">
                 {{csrf_field()}}
                 <textarea name="body" id="" class="form-control" cols="30" rows="10"></textarea>

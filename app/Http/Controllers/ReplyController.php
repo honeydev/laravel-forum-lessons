@@ -33,8 +33,15 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Thread $thread)
+    public function store($channelCode, $threadId)
     {
+        /*
+            Тут я немного запутался и переписал по-своему,
+            т.к. у меня не проходили тесты, а автор не показывал
+            код данного метода в 5-м уроке. Возможно я просто пропустил
+            этот момент ранее, возмжно причина еще в чем-то.
+        */
+        $thread = Thread::find($threadId);
         $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()

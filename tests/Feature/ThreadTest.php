@@ -28,6 +28,14 @@ class ThreadTest extends TestCase
             ->assertSee($this->thread->body);
     }
 
+    public function test_a_thread_can_make_a_string_path()
+    {
+        $this->assertEquals(
+            "/threads/{$this->thread->channel->code}/{$this->thread->id}", 
+            $this->thread->path()
+        );
+    }
+
     public function test_a_user_can_browse_replies()
     {
         $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
