@@ -10,7 +10,7 @@
 * [Урок - 1](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%231)
 * [Урок - 2](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%232)
 * [Урок - 3](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%233)
-* [Урок - 4](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%23[)
+* [Урок - 4](https://github.com/honeydev/laravel-forum-lessons/tree/lesson%234)
     
 ## Команды урока
 генерирует class map для автозагрузчика composer
