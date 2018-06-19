@@ -42,4 +42,14 @@ class ThreadTest extends TestCase
         $this->get($this->thread->path())
             ->assertSee($reply->body);
     }
+
+    public function test_a_use_can_filter_threads_by_a_channel()
+    {
+        $channel = create('App\Channel');
+        $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
+        $threadNotInChannel = create('App\Thread');
+        $this->get('/threads/' . $channel->code)
+            ->assertSee($threadInChannel->title)
+            ->assertDontSee($threadNotInChannel->title);
+    }
 }

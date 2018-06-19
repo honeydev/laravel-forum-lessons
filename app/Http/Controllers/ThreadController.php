@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\Channel;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -13,12 +14,16 @@ class ThreadController extends Controller
     }
     /**
      * Display a listing of the resource.
-     *
+     * @param Channel $channel
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Channel $channel)
     {
-        $threads = Thread::latest()->get();
+        if ($channel->exists) {
+            $threads = $channel->threads()->latest()->get();
+        } else {
+            $threads = Thread::latest()->get();
+        }
         return view('thread.index', compact('threads'));
     }
 
@@ -40,6 +45,11 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "title" => "required",
+            "body" => "required",
+            "channel_id" => "required|exists:channels,id"
+        ]);
         $thread = Thread::create([
             'channel_id' => request('channel_id'),
             'user_id' => auth()->id(),

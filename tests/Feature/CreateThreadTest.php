@@ -30,9 +30,19 @@ class CreateThreadTest extends TestCase
         $user = create('App\User');
         $this->be($user);
         $this->signIn();
-        $thread = create('App\Thread');
-        $this->post('/threads', $thread->toArray());
-        $this->get($thread->path())
+        $thread = make('App\Thread');
+        // dd($thread->toArray());
+        $response = $this->post('/threads', $thread->toArray());
+        
+        $this->get($response->headers->get('Location'))
             ->assertSee($thread->body);
+    }
+
+    public function test_a_thread_requires_a_title()
+    {
+        $this->expectException('Illuminate\Validation\ValidationException');
+        $this->signIn();
+        $thread = make('App\Thread', ["title" => null]);
+        $response = $this->post('/threads', $thread->toArray());
     }
 }
